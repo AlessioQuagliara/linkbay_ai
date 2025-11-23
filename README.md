@@ -16,7 +16,7 @@
 ## Installazione
 
 ```bash
-pip install git+https://github.com/AlessioQuagliara/linkbay-ai.git
+pip install git+https://github.com/AlessioQuagliara/linkbay_ai.git
 ```
 
 ## Configurazione
