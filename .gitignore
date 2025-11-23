@@ -54,3 +54,5 @@ Thumbs.db
 # Example files
 linkbay_example.db
 
+# Script di bash
+gitpush.sh
