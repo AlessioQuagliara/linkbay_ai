@@ -1,0 +1,20 @@
+[project]
+name = "linkbay-ai"
+version = "0.1.0"
+description = "AI orchestrator per LinkBayCMS - Risposte, form, HTML, analisi dati"
+authors = [
+    {name = "Alessio Quagliara", email = "quagliara.alessio@gmail.com"},
+]
+dependencies = [
+    "pydantic>=2.0.0",
+    "openai>=1.0.0",
+    "requests>=2.25.0",
+]
+requires-python = ">=3.8"
+
+[project.optional-dependencies]
+dev = ["pytest", "black", "flake8"]
+
+[build-system]
+requires = ["setuptools>=45.0", "wheel"]
+build-backend = "setuptools.build_meta"
