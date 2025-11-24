@@ -11,13 +11,13 @@ dependencies = [
     "numpy>=1.20.0",
 ]
 requires-python = ">=3.8"
-readme = "README_ENTERPRISE.md"
-license = {text = "MIT"}
+readme = "README.md"
+license = {text = "MIT"}  # Usa questa sintassi
 keywords = ["ai", "llm", "openai", "deepseek", "orchestration", "enterprise"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: MIT License",  # Aggiungi il classifier
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -42,5 +42,5 @@ all = [
 ]
 
 [build-system]
-requires = ["setuptools>=45.0", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]  # Usa una versione stabile
 build-backend = "setuptools.build_meta"

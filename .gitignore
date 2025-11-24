@@ -56,3 +56,7 @@ linkbay_example.db
 
 # Script di bash
 gitpush.sh
+
+# pypi
+linkbay_ai.egg-info/
+dist/
