@@ -41,13 +41,15 @@ Libreria Python avanzata per orchestrazione AI con multi-provider fallback, budg
 ##  Installazione
 
 ```bash
+pip install linkbay-ai
+```
+oppure
+```bash
 # Installazione base
 pip install git+https://github.com/AlessioQuagliara/linkbay-ai.git
 
 # Con semantic cache (opzionale ma consigliato)
 pip install git+https://github.com/AlessioQuagliara/linkbay-ai.git[cache]
-# oppure
-pip install sentence-transformers
 ```
 
 ## ⚡ Quick Start
