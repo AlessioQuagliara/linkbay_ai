@@ -7,7 +7,11 @@ from .providers import (
     BaseProvider,
     DeepSeekProvider, 
     OpenAIProvider, 
-    LocalProvider
+    LocalProvider,
+    ProviderError,
+    ProviderTimeoutError,
+    ProviderRateLimitError,
+    ProviderConnectionError
 )
 from .schemas import (
     ProviderConfig,
@@ -23,7 +27,7 @@ from .schemas import (
 from .cost_controller import CostController, BudgetExceededException
 from .semantic_cache import SemanticCache
 from .conversation import ConversationContext
-from .tools import ToolsManager, CommonTools, create_default_tools_manager
+from .tools import ToolsManager, CommonTools, create_default_tools_manager, ToolExecutionError, ToolValidationError, ToolNotFoundError
 from .prompt_library import PromptLibrary
 from .utils import (
     generate_html_tailwind,
@@ -44,6 +48,10 @@ __all__ = [
     "DeepSeekProvider",
     "OpenAIProvider",
     "LocalProvider",
+    "ProviderError",
+    "ProviderTimeoutError",
+    "ProviderRateLimitError",
+    "ProviderConnectionError",
     
     # Schemas
     "ProviderConfig",
@@ -64,6 +72,9 @@ __all__ = [
     "ToolsManager",
     "CommonTools",
     "create_default_tools_manager",
+    "ToolExecutionError",
+    "ToolValidationError",
+    "ToolNotFoundError",
     "PromptLibrary",
     
     # Utils (legacy)

@@ -1,29 +1,31 @@
 [project]
 name = "linkbay-ai"
-version = "0.2.1"
-description = "Enterprise AI orchestration library - Multi-provider fallback, cost control, semantic caching, streaming, conversation management"
+version = "0.2.2"
+description = "Libreria di orchestrazione AI - Fallback multi-provider, controllo dei costi, caching semantico, streaming, gestione conversazioni, function calling"
 authors = [
     {name = "Alessio Quagliara", email = "quagliara.alessio@gmail.com"},
 ]
 dependencies = [
     "pydantic>=2.0.0",
-    "openai>=1.0.0",
+    "openai>=1.3.0",
     "numpy>=1.20.0",
 ]
 requires-python = ">=3.8"
 readme = "README.md"
-license = {text = "MIT"}  # Usa questa sintassi
-keywords = ["ai", "llm", "openai", "deepseek", "orchestration", "enterprise"]
+license = {text = "MIT"}
+keywords = ["ai", "llm", "openai", "deepseek", "orchestration", "enterprise", "semantic-cache", "function-calling"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",  # Aggiungi il classifier
+    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 
 [project.optional-dependencies]
@@ -36,11 +38,26 @@ dev = [
     "black>=23.0.0",
     "mypy>=1.0.0",
     "flake8>=6.0.0",
+    "isort>=5.0.0",
 ]
 all = [
     "sentence-transformers>=2.0.0",
 ]
 
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]  # Usa una versione stabile
+requires = ["setuptools>=62.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false

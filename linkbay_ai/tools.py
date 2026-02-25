@@ -12,6 +12,14 @@ class ToolExecutionError(Exception):
     """Errore durante l'esecuzione di un tool"""
     pass
 
+class ToolValidationError(ToolExecutionError):
+    """Errore nella validazione dei parametri del tool"""
+    pass
+
+class ToolNotFoundError(ToolExecutionError):
+    """Tool non trovato nel registry"""
+    pass
+
 class ToolsManager:
     """
     Gestisce la registrazione ed esecuzione di tools/functions
@@ -109,7 +117,15 @@ class CommonTools:
             
         Returns:
             Lista di prodotti
+            
+        Raises:
+            ValueError: Se i parametri non sono validi
         """
+        if not query or not query.strip():
+            raise ValueError("Query di ricerca obbligatoria")
+        if max_results < 1 or max_results > 100:
+            raise ValueError("max_results deve essere tra 1 e 100")
+        
         # Implementazione mock - connetti al tuo database
         logger.info(f"🔍 Ricerca prodotti: {query} (categoria: {category})")
         return [
@@ -147,14 +163,24 @@ class CommonTools:
         Calcola un'espressione matematica
         
         Args:
-            expression: Espressione matematica
+            expression: Espressione matematica (es: "2 + 2 * 3")
             
         Returns:
-            Risultato del calcolo
+            Risultato del calcolo come float
+            
+        Raises:
+            ValueError: Se l'espressione non è valida
         """
+        if not expression or not expression.strip():
+            raise ValueError("Espressione matematica obbligatoria")
+        
         logger.info(f"🔢 Calcolo: {expression}")
         try:
-            # Usa eval in modo sicuro (per produzione usa una libreria dedicata)
+            # Safe eval: consenti solo operatori matematici e numeri
+            import re
+            if not re.match(r'^[\d\s\+\-\*\/\(\)\.]+$', expression):
+                raise ValueError("Espressione contiene caratteri non consentiti")
+            
             result = eval(expression, {"__builtins__": {}}, {})
             return float(result)
         except Exception as e:
@@ -281,6 +307,33 @@ def create_default_tools_manager() -> ToolsManager:
                 }
             },
             "required": ["user_id"]
+        }
+    )
+    
+    # Registra send_notification
+    manager.register_tool(
+        name="send_notification",
+        function=CommonTools.send_notification,
+        description="Invia una notifica a un utente via email/sms/push",
+        parameters={
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "string",
+                    "description": "ID dell'utente destinatario"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Contenuto del messaggio"
+                },
+                "channel": {
+                    "type": "string",
+                    "enum": ["email", "sms", "push"],
+                    "description": "Canale di notifica",
+                    "default": "email"
+                }
+            },
+            "required": ["user_id", "message"]
         }
     )
     

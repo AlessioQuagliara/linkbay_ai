@@ -63,7 +63,13 @@ class CostController:
             
         Raises:
             BudgetExceededException: Se il budget è stato superato
+            ValueError: Se i parametri non sono validi
         """
+        if estimated_tokens < 0:
+            raise ValueError("estimated_tokens deve essere positivo")
+        if estimated_tokens > self.config.max_tokens_per_hour:
+            raise ValueError(f"Richiesta supera il limite orario massimo ({self.config.max_tokens_per_hour})")
+        
         self._cleanup_old_entries()
         
         hour_key = self._get_hour_key()
